@@ -1,19 +1,24 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Home from '../views/home/index.vue';
 
-const routes: Array<RouteRecordRaw> = [
+const routes: Array<RouteRecordRaw> = [ //jsonp js文件的名字 叫什么
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'Home',
+    component: Home
   },
   {
-    path: '/about',
-    name: 'about',
+    path: '/mine',
+    name: 'Mine',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import(/* webpackChunkName: "mine" */ '../views/mine/index.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import(/* webpackChunkName: "profile" */ '../views/profile/index.vue')
   }
 ]
 
