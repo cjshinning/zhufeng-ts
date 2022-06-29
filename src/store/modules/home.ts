@@ -1,6 +1,7 @@
 import { Module } from 'vuex';
 import { CATEGORY_TYPES, IHomeState } from '@/typings';
 import { IGlobalState } from '..';
+import * as Types from '../action-types';
 
 // 首页理应该存哪些数据
 
@@ -19,7 +20,12 @@ const state: IHomeState = {
 // module里的参数  1)自己参数 2)全局状态
 const home: Module<IHomeState, IGlobalState> = {
   namespaced: true,
-  state
+  state,
+  mutations: {
+    [Types.SET_CATEGORY](state, payload: CATEGORY_TYPES) {
+      state.currentCategory = payload;
+    }
+  }
 }
 
 export default home;
