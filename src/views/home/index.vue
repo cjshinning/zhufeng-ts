@@ -3,12 +3,20 @@
     <!-- 首页头部 -->
     <home-header :category="category" @setCurrentCategory="setCurrentCategory"></home-header>
     <div class="home-container" style="margin-top: 65px;">
-      {{ category }}
+      <!-- 轮播图 -->
+      <Suspense>
+        <template #default>
+          <home-swiper></home-swiper>
+        </template>
+        <template #fallback>
+          <div>loading...</div>
+        </template>
+      </Suspense>
+
+      <!-- 课程列表 -->
+      <home-list></home-list>
     </div>
-    <!-- 轮播图 -->
-    <home-swiper></home-swiper>
-    <!-- 课程列表 -->
-    <home-list></home-list>
+
   </div>
 </template>
 <script lang="ts">

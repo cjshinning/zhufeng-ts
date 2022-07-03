@@ -1,7 +1,8 @@
 import { Module } from 'vuex';
-import { CATEGORY_TYPES, IHomeState } from '@/typings';
+import { CATEGORY_TYPES, IHomeState, ISlider } from '@/typings';
 import { IGlobalState } from '..';
 import * as Types from '../action-types';
+import { getSliders } from '@/api/home';
 
 // 首页理应该存哪些数据
 
@@ -24,6 +25,16 @@ const home: Module<IHomeState, IGlobalState> = {
   mutations: {
     [Types.SET_CATEGORY](state, payload: CATEGORY_TYPES) {
       state.currentCategory = payload;
+    },
+    [Types.SET_SLIDER_LIST](state, payload: ISlider[]) {
+      state.sliders = payload;
+    }
+  },
+  actions: {
+    async [Types.SET_SLIDER_LIST]({ commit }) {
+      let sliders = await getSliders<ISlider>();
+      sliders = { 'url': '//img2.37wanimg.com/2021/07/06095526PTqX0.jpg' };
+      commit(Types.SET_SLIDER_LIST, sliders);
     }
   }
 }
